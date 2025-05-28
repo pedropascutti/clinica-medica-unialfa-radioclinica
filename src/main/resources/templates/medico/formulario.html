@@ -7,7 +7,28 @@
 <div th:insert="~{index :: sidebar}"></div>
 
 <div class="content">
-    <h1>Bem-vindo formulario medico</h1>
+    <div class="container mt-4">
+        <h2>Cadastrar Médico</h2>
+        <form th:action="@{/medicos}" method="post">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo do médico" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="crm" class="form-label">CRM</label>
+                <input type="text" class="form-control" id="crm" name="crm" placeholder="Número do CRM" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="especialidade" class="form-label">Especialidade</label>
+                <input type="text" class="form-control" id="especialidade" name="especialidade" placeholder="Ex: Cardiologia" required>
+            </div>
+
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a th:href="@{/medicos}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
 </div>
 
 <div th:insert="~{index :: script}"></div>
