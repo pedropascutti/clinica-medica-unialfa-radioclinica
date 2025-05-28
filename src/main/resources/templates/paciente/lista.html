@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index :: head}">
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<div th:insert="~{index :: sidebar}"></div>
 
+<div class="content">
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between">
+            <h2>Lista de Pacientes</h2>
+            <div>
+                <a th:href="@{/paciente}" class="btn btn-success">Adicionar<i class="bi bi-plus-circle ps-2"></i></a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Data de Nascimento</th>
+                    <th>Telefone</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Patrick Pierre</td>
+                    <td>999.999.999-99</td>
+                    <td>06/01/2002</td>
+                    <td>44 99999-9999</td>
+                    <td class="text-center">
+                        <a href="#" class="btn btn-sm btn-primary">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </a>
+                        <a href="#" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i> Excluir
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{index :: script}"></div>
 </body>
 </html>

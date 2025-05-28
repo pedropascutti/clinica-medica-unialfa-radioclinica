@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("paciente")
-public class PacienteController {
+@RequestMapping("agendamento")
+public class AgendamentoController {
 
     @GetMapping()
     public String iniciar(Model model) {
-        return "paciente/formulario";
+        return "agendamento/formulario";
     }
 
     @GetMapping("lista")
     public String listar(Model model) {
-        return "paciente/lista";
+        return "agendamento/lista";
     }
 }
