@@ -7,8 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
+
 
 @Entity
 @Data
@@ -20,8 +20,8 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Agenda agenda;
+    @OneToMany(mappedBy = "paciente")
+    private List<Agenda> agendas;
 
     @NotNull(message = "Informe o nome do paciente")
     private String nome;
@@ -29,7 +29,7 @@ public class Paciente {
     private String cpf;
     @NotNull(message = "Informe um número para contato")
     private String telefone;
-    @NotNull(message = "Informe a Data de Nascimento do Paciente")
+    @NotNull(message = "Informe a Data de Nascimento do paciente")
     private LocalDate dataNascimento;
 
 

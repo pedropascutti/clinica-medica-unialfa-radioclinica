@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,8 +19,8 @@ public class Medico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Agenda agenda;
+    @OneToMany(mappedBy = "medico")
+    private List<Agenda> agendas;
 
     @NotNull(message = "Informe o nome do paciente")
     private String nome;

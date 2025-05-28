@@ -1,7 +1,6 @@
 package equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,12 +22,21 @@ public class Agenda {
     @NotNull(message = "Informe a data e hora do agendamento")
     private LocalDateTime data;
 
-    @OneToMany(mappedBy = "pacientes", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Paciente> paciente;
+//    @JoinColumn(name = "id_paciente")
+//    @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Paciente> paciente;
+//
+//    @JoinColumn(name = "id_medico")
+//    @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Medico> medico;
 
-    @OneToMany(mappedBy = "medicos", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Medico> medico;
+    @ManyToOne
+    @JoinColumn(name = "id_paciente", nullable = false)
+    private Paciente paciente;
 
+    @ManyToOne
+    @JoinColumn(name = "id_medico", nullable = false)
+    private Medico medico;
 
 
 }
