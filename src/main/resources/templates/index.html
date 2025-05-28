@@ -44,12 +44,12 @@
     </style>
 </head>
 <body>
-<div class="sidebar" th:fragment="sidebar">
+<div class="sidebar" style="min-height: 100vh" th:fragment="sidebar">
     <div class="d-flex justify-content-center pb-4"><img src="https://i.postimg.cc/pd16RnBk/logo-radio-clinica-umuarama-upscayl-5x-ultrasharp-Photoroom.png"></div>
     <a th:href="@{/}"><i class="bi bi-house-door"></i> Home</a>
-    <a th:href="@{/pacientes}"><i class="bi bi-person"></i> Pacientes</a>
-    <a th:href="@{/medicos}"><i class="bi bi-person"></i> Médicos</a>
-    <a th:href="@{/agenda}"><i class="bi bi-calendar-event"></i> Agenda</a>
+    <a th:href="@{/paciente/lista}"><i class="bi bi-person"></i> Pacientes</a>
+    <a th:href="@{/medico/lista}"><i class="bi bi-person"></i> Médicos</a>
+    <a th:href="@{/agendamento/lista}"><i class="bi bi-calendar-event"></i> Agendamento</a>
 
     <div class="alert alert-danger alert-dismissible fade show" role="alert"
          style="max-width: 400px;" th:if="${not #strings.isEmpty(erro)}">
