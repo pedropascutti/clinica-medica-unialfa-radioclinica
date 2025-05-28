@@ -6,15 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
-@Entity
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Paciente {
+public class Medico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +23,10 @@ public class Paciente {
 
     @NotNull(message = "Informe o nome do paciente")
     private String nome;
-    @NotNull(message = "Informe o CPF")
-    private String cpf;
-    @NotNull(message = "Informe um número para contato")
-    private String telefone;
-    @NotNull(message = "Informe a Data de Nascimento do Paciente")
-    private LocalDate dataNascimento;
+    @NotNull(message = "Informe o CRM")
+    private String crm;
+    @NotNull(message = "Informe a especilidade do médico")
+    private String especialidade;
 
 
 }
