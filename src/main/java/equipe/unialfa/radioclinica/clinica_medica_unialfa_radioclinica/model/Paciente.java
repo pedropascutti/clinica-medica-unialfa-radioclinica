@@ -19,6 +19,9 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Agenda agenda;
+
     @NotNull(message = "Informe o nome do paciente")
     private String nome;
     @NotNull(message = "Informe o CPF")
@@ -27,5 +30,6 @@ public class Paciente {
     private String telefone;
     @NotNull(message = "Informe a Data de Nascimento do Paciente")
     private Date dataNascimento;
+
 
 }
