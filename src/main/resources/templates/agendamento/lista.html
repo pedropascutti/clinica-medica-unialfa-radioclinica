@@ -7,7 +7,41 @@
 <div th:insert="~{index :: sidebar}"></div>
 
 <div class="content">
-    <h1>Bem-vindo</h1>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between">
+            <h2>Lista de Agendamentos</h2>
+            <div>
+                <a th:href="@{/agendamento/formulario}" class="btn btn-success">Adicionar<i class="bi bi-plus-circle ps-2"></i></a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th>Médico</th>
+                    <th>Paciente</th>
+                    <th>Data e hora de atendimento</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Dr João Silva</td>
+                    <td>Patrick Pierre</td>
+                    <td>28/05/2025 16:00</td>
+                    <td class="text-center">
+                        <a href="#" class="btn btn-sm btn-primary">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </a>
+                        <a href="#" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i> Excluir
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <div th:insert="~{index :: script}"></div>
