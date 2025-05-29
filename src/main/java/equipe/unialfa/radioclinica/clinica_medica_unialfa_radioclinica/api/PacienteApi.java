@@ -1,5 +1,6 @@
 package equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.api;
-import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model.Paciente; 
+
+import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model.Paciente;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,13 +8,13 @@ import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.service.P
 
 import java.util.List;
 
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/pacientes")
 public class PacienteApi {
 
     private PacienteService pacienteService;
+
     @GetMapping
     public ResponseEntity<List<Paciente>> listarTodos() {
         return ResponseEntity.ok(pacienteService.listarTodos());
@@ -40,6 +41,3 @@ public class PacienteApi {
         return ResponseEntity.noContent().build();
     }
 }
-
-
-

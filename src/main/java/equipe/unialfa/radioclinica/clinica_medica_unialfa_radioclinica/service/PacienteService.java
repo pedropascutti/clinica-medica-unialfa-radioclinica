@@ -1,35 +1,42 @@
 package equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.service;
+
 import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model.Paciente;
 import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.repository.PacienteRepository;
-import jakarta.validation.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-    
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class PacienteService {
 
-    @Autowired
     private PacienteRepository pacienteRepository;
 
-    @Transactional
-    public void salvar(Paciente paciente) {
-        try {
-            if (paciente.getItens() == null)
-                throw new RuntimeException("Informe ao menos um paciente");
-            paciente.getItens().forEach(itemPaciente -> itemPaciente.setPaciente(paciente));
-
-            repository.save(paciente);
-
-        } catch (ConstraintViolationException cve) {
-            System.out.println(cve.getMessage());
-        } catch (RuntimeException re){
-            throw re;
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+    public List<Paciente> listarTodos() {
+        return pacienteRepository.findAll();
     }
 
+    public Paciente buscarPorId(Long id) {
+        Optional<Paciente> paciente = pacienteRepository.findById(id);
+        return paciente.orElseThrow(() -> new RuntimeException("Paciente não encontrado com o ID: " + id));
+    }
+
+    public Paciente salvar(Paciente paciente) {
+        return pacienteRepository.save(paciente);
+    }
+
+    public Paciente atualizar(Long id, Paciente pacienteAtualizado) {
+        return pacienteRepository.findById(id).map(paciente -> {
+            paciente.setNome(pacienteAtualizado.getNome());
+            paciente.setCpf(pacienteAtualizado.getCpf());
+            // Adicione aqui a atualização de outros campos do paciente
+            return pacienteRepository.save(paciente);
+        }).orElseThrow(() -> new RuntimeException("Paciente não encontrado com o ID: " + id));
+    }
+
+    public void deletar(Long id) {
+        pacienteRepository.deleteById(id);
+    }
 }
