@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/pacientes")
 public class PacienteApi {
-    private final PacienteService pacienteService;
+    private final PacienteService pacienteService {
 
     @GetMapping
     public ResponseEntity<List<Paciente>> listarTodos() {
@@ -33,6 +33,7 @@ public class PacienteApi {
     public ResponseEntity<Paciente> atualizar(@PathVariable Long id, @RequestBody Paciente paciente) {
         return ResponseEntity.ok(pacienteService.atualizar(id, paciente));
     }
+    };
 
 
     }
