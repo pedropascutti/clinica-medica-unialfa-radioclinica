@@ -8,6 +8,22 @@ import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.service.P
 import java.util.List;
 
 
-
+@RestController
+@AllArgsConstructor
+@RequestMapping("/pacientes")
 public class PacienteApi {
+    private final PacienteService pacienteService;
+
+    @GetMapping
+    public ResponseEntity<List<Paciente>> listarTodos() {
+        return ResponseEntity.ok(pacienteService.listarTodos());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Paciente> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(pacienteService.buscarPorId(id));
+    }
+
+
+    }
 }
