@@ -24,6 +24,16 @@ public class PacienteApi {
         return ResponseEntity.ok(pacienteService.buscarPorId(id));
     }
 
+    @PostMapping
+    public ResponseEntity<Paciente> salvar(@RequestBody Paciente paciente) {
+        return ResponseEntity.ok(pacienteService.salvar(paciente));
+    }
+
+        @PutMapping("/{id}")
+    public ResponseEntity<Paciente> atualizar(@PathVariable Long id, @RequestBody Paciente paciente) {
+        return ResponseEntity.ok(pacienteService.atualizar(id, paciente));
+    }
+
 
     }
 }
