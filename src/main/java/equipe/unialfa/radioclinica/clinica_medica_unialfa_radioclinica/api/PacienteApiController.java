@@ -40,5 +40,4 @@ public class PacienteApiController {
         pacienteService.deletar(id);
         return ResponseEntity.noContent().build();
     }
-
 }

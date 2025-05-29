@@ -19,15 +19,15 @@ public class Medico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "medico")
-    private List<Agenda> agendas;
-
     @NotNull(message = "Informe o nome do paciente")
     private String nome;
+
     @NotNull(message = "Informe o CRM")
     private String crm;
+
     @NotNull(message = "Informe a especilidade do médico")
     private String especialidade;
 
-
+    @OneToMany(mappedBy = "medico")
+    private List<Agenda> agendas;
 }
