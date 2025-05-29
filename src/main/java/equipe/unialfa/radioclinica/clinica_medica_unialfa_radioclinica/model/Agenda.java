@@ -22,14 +22,6 @@ public class Agenda {
     @NotNull(message = "Informe a data e hora do agendamento")
     private LocalDateTime data;
 
-//    @JoinColumn(name = "id_paciente")
-//    @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Paciente> paciente;
-//
-//    @JoinColumn(name = "id_medico")
-//    @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Medico> medico;
-
     @ManyToOne
     @JoinColumn(name = "id_paciente", nullable = false)
     private Paciente paciente;
