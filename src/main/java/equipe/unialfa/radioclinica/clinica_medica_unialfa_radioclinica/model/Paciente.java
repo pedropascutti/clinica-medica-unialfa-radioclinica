@@ -20,17 +20,18 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "paciente")
-    private List<Agenda> agendas;
-
     @NotNull(message = "Informe o nome do paciente")
     private String nome;
+
     @NotNull(message = "Informe o CPF")
     private String cpf;
+
     @NotNull(message = "Informe um número para contato")
     private String telefone;
+
     @NotNull(message = "Informe a Data de Nascimento do paciente")
     private LocalDate dataNascimento;
 
-
+    @OneToMany(mappedBy = "paciente")
+    private List<Agenda> agendas;
 }

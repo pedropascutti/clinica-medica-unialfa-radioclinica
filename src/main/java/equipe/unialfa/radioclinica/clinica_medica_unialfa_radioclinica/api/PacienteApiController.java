@@ -1,22 +1,22 @@
 package equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.api;
 
 import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model.Paciente;
-import lombok.AllArgsConstructor;
+import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.service.PacienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.service.PacienteService;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
-@RequestMapping("api/pacientes")
-public class PacienteApi {
+@RequestMapping("/api/paciente")
+public class PacienteApiController {
 
+    @Autowired
     private PacienteService pacienteService;
 
     @GetMapping
-    public ResponseEntity<List<Paciente>> listarTodos() {
+    public ResponseEntity<List<Paciente>> listar() {
         return ResponseEntity.ok(pacienteService.listarTodos());
     }
 
@@ -26,7 +26,7 @@ public class PacienteApi {
     }
 
     @PostMapping
-    public ResponseEntity<Paciente> salvar(@RequestBody Paciente paciente) {
+    public ResponseEntity<Paciente> criar(@RequestBody Paciente paciente) {
         return ResponseEntity.ok(pacienteService.salvar(paciente));
     }
 
@@ -40,4 +40,5 @@ public class PacienteApi {
         pacienteService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
 }
