@@ -26,18 +26,38 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Patrick Pierre</td>
-                    <td>999.999.999-99</td>
-                    <td>06/01/2002</td>
-                    <td>44 99999-9999</td>
-                    <td class="text-center">
-                        <a href="#" class="btn btn-sm btn-primary">
+                <tr th:each="paciente : ${pacientes}">
+                    <td th:text="${paciente.nome}">0</td>
+                    <td th:text="${paciente.cpf}">0</td>
+                    <td th:text="${paciente.dataNascimento}">0</td>
+                    <td th:text="${paciente.telefone}">0</td>
+                    <td>
+                        <a th:href="@{'/paciente/alterar/' + ${paciente.id}}" type="button"
+                           class="btn btn-sm btn-primary">
                             <i class="bi bi-pencil-square"></i> Editar
                         </a>
-                        <a href="#" class="btn btn-sm btn-danger">
+
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" th:attr="data-bs-target='#modalRemover-' + ${paciente.id}">
                             <i class="bi bi-trash"></i> Excluir
-                        </a>
+                        </button>
+
+                        <div class="modal fade" th:id="'modalRemover-' + ${paciente.id}" tabindex="-1" aria-labelledby="modalRemoverLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalRemoverLabel">Confirmar Remoção</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Tem certeza que deseja remover este paciente?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <a th:href="@{'/paciente/remover/' + ${paciente.id}}" class="btn btn-danger">Remover</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 </tbody>

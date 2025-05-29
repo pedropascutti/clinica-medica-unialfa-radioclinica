@@ -30,16 +30,22 @@ public class AgendaService {
 
     }
     // salvar um agendamento
-    public Agenda salvar(Agenda agenda) {
-        Medico medico = medicoService.buscarPorId(agenda.getMedico().getId()); // TODO: Inserir buscarPorId no MedicoService
-        if (medico == null) {
-            throw new RuntimeException("Médico não encontrado");
-        }
-        Paciente paciente = pacienteService.buscarPorId(agenda.getPaciente().getId());
-        agenda.setMedico(medico);
-        agenda.setPaciente(paciente);
-        return agendaRepository.save(agenda);
-    }
+
+    //*
+    // public Agenda salvar(Agenda agenda) {
+    //        Medico medico = medicoService.buscarPorId(agenda.getMedico().getId()); // TODO: Inserir buscarPorId no MedicoService
+    //        if (medico == null) {
+    //            throw new RuntimeException("Médico não encontrado");
+    //        }
+    //        Paciente paciente = pacienteService.buscarPorId(agenda.getPaciente().getId());
+    //        agenda.setMedico(medico);
+    //        agenda.setPaciente(paciente);
+    //        return agendaRepository.save(agenda);
+    //    }
+    //
+    //
+    // *//
+
 
      public void deletar(Long id) {
         agendaRepository.deleteById(id);
