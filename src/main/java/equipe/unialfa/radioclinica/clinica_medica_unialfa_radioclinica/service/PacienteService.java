@@ -8,7 +8,28 @@ import org.springframework.transaction.annotation.Transactional;
     
 import java.util.List;
 
+@Service
 public class PacienteService {
 
+    @Autowired
+    private PacienteRepository pacienteRepository;
+
+    @Transactional
+    public void salvar(Paciente paciente) {
+        try {
+            if (paciente.getItens() == null)
+                throw new RuntimeException("Informe ao menos um paciente");
+            paciente.getItens().forEach(itemPaciente -> itemPaciente.setPaciente(paciente));
+
+            repository.save(paciente);
+
+        } catch (ConstraintViolationException cve) {
+            System.out.println(cve.getMessage());
+        } catch (RuntimeException re){
+            throw re;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
 }
