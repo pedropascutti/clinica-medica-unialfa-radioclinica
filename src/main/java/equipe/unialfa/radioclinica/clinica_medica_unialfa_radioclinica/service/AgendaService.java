@@ -41,5 +41,9 @@ public class AgendaService {
         return agendaRepository.save(agenda);
     }
 
+     public void deletar(Long id) {
+        agendaRepository.deleteById(id);
+    }
+
 
 }
