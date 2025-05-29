@@ -33,8 +33,8 @@ public class PacienteApi {
     public ResponseEntity<Paciente> atualizar(@PathVariable Long id, @RequestBody Paciente paciente) {
         return ResponseEntity.ok(pacienteService.atualizar(id, paciente));
     }
+    }
+
+
     };
 
-
-    }
-}
