@@ -10,10 +10,10 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/pacientes")
+@RequestMapping("api/pacientes")
 public class PacienteApi {
-    private final PacienteService pacienteService {
 
+    private PacienteService pacienteService;
     @GetMapping
     public ResponseEntity<List<Paciente>> listarTodos() {
         return ResponseEntity.ok(pacienteService.listarTodos());
@@ -33,8 +33,13 @@ public class PacienteApi {
     public ResponseEntity<Paciente> atualizar(@PathVariable Long id, @RequestBody Paciente paciente) {
         return ResponseEntity.ok(pacienteService.atualizar(id, paciente));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        pacienteService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
+}
 
 
-    };
 
