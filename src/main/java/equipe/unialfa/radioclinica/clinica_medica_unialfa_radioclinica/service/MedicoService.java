@@ -56,5 +56,8 @@ public class MedicoService {
         }
     }
 
+    public void deletar(Long id) {
+        medicoRepository.deleteById(id);
+    }
 
 }
