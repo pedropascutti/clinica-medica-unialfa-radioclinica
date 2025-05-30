@@ -1,5 +1,6 @@
 package equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

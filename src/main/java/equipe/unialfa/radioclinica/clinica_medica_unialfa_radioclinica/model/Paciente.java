@@ -1,5 +1,6 @@
 package equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,4 @@ public class Paciente {
     @NotNull(message = "Informe a Data de Nascimento do paciente")
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "paciente")
-    private List<Agenda> agendas;
 }
