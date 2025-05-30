@@ -12,6 +12,17 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class MedicoService {
+    private MedicoRepository medicoRepository;
+
+    public List<Medico> listarTodos() {
+        return medicoRepository.findAll();
+    }
+
+    public Medico buscarPorId(Long id) {
+        Optional<Medico> medico = medicoRepository.findById(id);
+        return medico.orElseThrow(() -> new RuntimeException("Médico não encontrado"));
+    }
 
     
+
 }
