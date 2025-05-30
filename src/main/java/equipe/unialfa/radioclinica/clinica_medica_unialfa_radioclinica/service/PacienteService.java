@@ -31,7 +31,6 @@ public class PacienteService {
         return pacienteRepository.findById(id).map(paciente -> {
             paciente.setNome(pacienteAtualizado.getNome());
             paciente.setCpf(pacienteAtualizado.getCpf());
-            // Adicione aqui a atualização de outros campos do paciente
             return pacienteRepository.save(paciente);
         }).orElseThrow(() -> new RuntimeException("Paciente não encontrado com o ID: " + id));
     }
