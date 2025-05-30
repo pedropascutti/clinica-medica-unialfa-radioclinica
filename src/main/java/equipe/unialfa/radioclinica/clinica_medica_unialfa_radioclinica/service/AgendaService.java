@@ -4,6 +4,7 @@ import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model.Age
 import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model.Medico;
 import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model.Paciente;
 import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.repository.AgendaRepository;
+import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.repository.PacienteRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,20 +32,45 @@ public class AgendaService {
     }
     // salvar um agendamento
 
-    //*
-    // public Agenda salvar(Agenda agenda) {
-    //        Medico medico = medicoService.buscarPorId(agenda.getMedico().getId()); // TODO: Inserir buscarPorId no MedicoService
-    //        if (medico == null) {
-    //            throw new RuntimeException("Médico não encontrado");
-    //        }
-    //        Paciente paciente = pacienteService.buscarPorId(agenda.getPaciente().getId());
-    //        agenda.setMedico(medico);
-    //        agenda.setPaciente(paciente);
-    //        return agendaRepository.save(agenda);
-    //    }
-    //
-    //
-    // *//
+   public Agenda salvar(Agenda agenda) {
+        try {
+            Medico medico = medicoService.buscarPorId(agenda.getMedico().getId());
+            Paciente paciente = pacienteService.buscarPorId(agenda.getPaciente().getId());
+            agenda.setMedico(medico);
+            agenda.setPaciente(paciente);
+            return agendaRepository.save(agenda);
+        } catch (RuntimeException re) {
+            throw re;
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar agendamento: " + e.getMessage());
+            throw new RuntimeException("Erro ao salvar agendamento: " + e.getMessage());
+        }
+    }
+
+    public Agenda atualizar(Long id, Agenda agendaAtualizada) {
+        try {
+            Agenda agendaExistente = buscarPorId(id); // Reutiliza o método buscarPorId para validação
+
+            agendaExistente.setData(agendaAtualizada.getData());
+
+            // Atualiza as referências de médico e paciente se elas forem alteradas
+            if (agendaAtualizada.getMedico() != null && !agendaExistente.getMedico().getId().equals(agendaAtualizada.getMedico().getId())) {
+                Medico medico = medicoService.buscarPorId(agendaAtualizada.getMedico().getId());
+                agendaExistente.setMedico(medico);
+            }
+            if (agendaAtualizada.getPaciente() != null && !agendaExistente.getPaciente().getId().equals(agendaAtualizada.getPaciente().getId())) {
+                Paciente paciente = pacienteService.buscarPorId(agendaAtualizada.getPaciente().getId());
+                agendaExistente.setPaciente(paciente);
+            }
+
+            return agendaRepository.save(agendaExistente);
+        } catch (RuntimeException re) {
+            throw re;
+        } catch (Exception e) {
+            System.out.println("Erro ao atualizar agendamento: " + e.getMessage());
+            throw new RuntimeException("Erro ao atualizar agendamento: " + e.getMessage());
+        }
+    }
 
 
      public void deletar(Long id) {
