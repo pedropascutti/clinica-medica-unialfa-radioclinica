@@ -4,13 +4,11 @@ import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model.Age
 import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model.Medico;
 import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.model.Paciente;
 import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.repository.AgendaRepository;
-import equipe.unialfa.radioclinica.clinica_medica_unialfa_radioclinica.repository.PacienteRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
