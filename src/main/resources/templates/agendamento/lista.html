@@ -25,17 +25,37 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Dr João Silva</td>
-                    <td>Patrick Pierre</td>
-                    <td>28/05/2025 16:00</td>
-                    <td class="text-center">
-                        <a href="#" class="btn btn-sm btn-primary">
+                <tr th:each="agendamento : ${agendamentos}">
+                    <td th:text="${agendamento.medico.nome}">0</td>
+                    <td th:text="${agendamento.paciente.nome}">0</td>
+                    <td th:text="${agendamento.data}">0</td>
+                    <td>
+                        <a th:href="@{'/agendamento/alterar/' + ${agendamento.id}}" type="button"
+                           class="btn btn-sm btn-primary">
                             <i class="bi bi-pencil-square"></i> Editar
                         </a>
-                        <a href="#" class="btn btn-sm btn-danger">
+
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" th:attr="data-bs-target='#modalRemover-' + ${agendamento.id}">
                             <i class="bi bi-trash"></i> Excluir
-                        </a>
+                        </button>
+
+                        <div class="modal fade" th:id="'modalRemover-' + ${agendamento.id}" tabindex="-1" aria-labelledby="modalRemoverLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalRemoverLabel">Confirmar Remoção</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Tem certeza que deseja remover este agendamento?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <a th:href="@{'/agendamento/remover/' + ${agendamento.id}}" class="btn btn-danger">Remover</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 </tbody>

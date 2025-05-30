@@ -30,5 +30,4 @@ public class Agenda {
     @JoinColumn(name = "id_medico", nullable = false)
     private Medico medico;
 
-
 }
