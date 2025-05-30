@@ -12,6 +12,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class MedicoService {
+
     private MedicoRepository medicoRepository;
 
     // isso aqui é pra listar todos os médicos no lindo front ende

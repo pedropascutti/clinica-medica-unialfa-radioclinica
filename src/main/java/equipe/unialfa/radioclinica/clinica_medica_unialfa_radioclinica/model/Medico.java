@@ -28,6 +28,4 @@ public class Medico {
     @NotNull(message = "Informe a especilidade do médico")
     private String especialidade;
 
-    @OneToMany(mappedBy = "medico")
-    private List<Agenda> agendas;
 }

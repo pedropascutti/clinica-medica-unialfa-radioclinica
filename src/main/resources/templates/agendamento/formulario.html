@@ -9,33 +9,29 @@
 <div class="content">
     <div class="container mt-4">
         <h2>Agendar Atendimento</h2>
-        <form th:action="@{/agendamentos}" method="post">
+        <form th:action="@{/agendamento/salvar}" method="post">
+
+            <input name="id" th:value="${agenda.id}" type="text" hidden="true">
+
             <div class="mb-3">
-                <label for="medico" class="form-label">Médico</label>
-                <select class="form-select" id="medico" name="medicoId" required>
-                    <option th:each="medico : ${medicos}"
-                            th:value="${medico.id}"
-                            th:text="${medico.nome}">Dr. Fulano</option>
+                <label for="medicoId" class="form-label">Medico</label>
+                <select id="medicoId" th:field="${agenda.medico.id}" class="form-control">
+                    <option value="" selected="selected">Selecione...</option>
+                    <option th:each="medico: ${medicos}" th:value="${medico.id}" th:text="${medico.nome}"></option>
                 </select>
             </div>
 
             <div class="mb-3">
-                <label for="paciente" class="form-label">Paciente</label>
-                <select class="form-select" id="paciente" name="pacienteId" required>
-                    <option th:each="paciente : ${pacientes}"
-                            th:value="${paciente.id}"
-                            th:text="${paciente.nome}">Fulano da Silva</option>
+                <label for="pacienteId" class="form-label">Paciente</label>
+                <select id="pacienteId" th:field="${agenda.paciente.id}" class="form-control">
+                    <option value="" selected="selected">Selecione...</option>
+                    <option th:each="paciente: ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nome}"></option>
                 </select>
             </div>
 
             <div class="mb-3">
                 <label for="data" class="form-label">Data</label>
-                <input type="date" class="form-control" id="data" name="data" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="hora" class="form-label">Hora</label>
-                <input type="time" class="form-control" id="hora" name="hora" required>
+                <input type="datetime-local" class="form-control" id="data" name="data" required>
             </div>
 
             <button type="submit" class="btn btn-success">Agendar</button>

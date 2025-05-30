@@ -9,20 +9,22 @@
 <div class="content">
     <div class="container mt-4">
         <h2>Cadastrar Médico</h2>
-        <form th:action="@{/medicos}" method="post">
+        <form th:action="@{/medico/salvar}" method="post">
+            <input name="id" th:value="${medico.id}" type="text" hidden="true">
+
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo do médico" required>
+                <input type="text" class="form-control" th:value="${medico.nome}" id="nome" name="nome" placeholder="Nome completo do médico" required>
             </div>
 
             <div class="mb-3">
                 <label for="crm" class="form-label">CRM</label>
-                <input type="text" class="form-control" id="crm" name="crm" placeholder="Número do CRM" required>
+                <input type="text" class="form-control" th:value="${medico.crm}" id="crm" name="crm" placeholder="Número do CRM" required>
             </div>
 
             <div class="mb-3">
                 <label for="especialidade" class="form-label">Especialidade</label>
-                <input type="text" class="form-control" id="especialidade" name="especialidade" placeholder="Ex: Cardiologia" required>
+                <input type="text" class="form-control" th:value="${medico.especialidade}" id="especialidade" name="especialidade" placeholder="Ex: Cardiologia" required>
             </div>
 
             <button type="submit" class="btn btn-success">Salvar</button>
