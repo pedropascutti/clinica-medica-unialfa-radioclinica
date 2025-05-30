@@ -61,6 +61,33 @@
 <div class="content">
     <h1>Bem-vindo à RadioClínica</h1>
     <p>Selecione uma opção no menu à esquerda para começar.</p>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><i class="bi bi-person-badge"></i> Médicos</h5>
+                    <p class="card-text display-6" th:text="${totalMedicos}">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-bg-success mb-3">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><i class="bi bi-person"></i> Pacientes</h5>
+                    <p class="card-text display-6" th:text="${totalPacientes}">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-bg-danger mb-3">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><i class="bi bi-calendar-event"></i> Agendamentos</h5>
+                    <p class="card-text display-6" th:text="${totalAgendamentos}">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

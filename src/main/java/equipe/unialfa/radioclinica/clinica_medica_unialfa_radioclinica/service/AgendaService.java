@@ -74,6 +74,4 @@ public class AgendaService {
      public void deletar(Long id) {
         agendaRepository.deleteById(id);
     }
-
-
 }
