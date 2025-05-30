@@ -49,11 +49,10 @@ public class AgendaService {
 
     public Agenda atualizar(Long id, Agenda agendaAtualizada) {
         try {
-            Agenda agendaExistente = buscarPorId(id); // Reutiliza o método buscarPorId para validação
+            Agenda agendaExistente = buscarPorId(id); 
 
             agendaExistente.setData(agendaAtualizada.getData());
 
-            // Atualiza as referências de médico e paciente se elas forem alteradas
             if (agendaAtualizada.getMedico() != null && !agendaExistente.getMedico().getId().equals(agendaAtualizada.getMedico().getId())) {
                 Medico medico = medicoService.buscarPorId(agendaAtualizada.getMedico().getId());
                 agendaExistente.setMedico(medico);
@@ -71,6 +70,7 @@ public class AgendaService {
             throw new RuntimeException("Erro ao atualizar agendamento: " + e.getMessage());
         }
     }
+    
 
 
      public void deletar(Long id) {
